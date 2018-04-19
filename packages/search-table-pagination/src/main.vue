@@ -360,6 +360,11 @@
       }
     },
     watch: {
+      refresh: function (value) {
+          if (value){
+              this.fetchHandler();
+          }
+      },
       data: function(value) {
         this.loadLocalData(value)
       }

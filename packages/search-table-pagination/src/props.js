@@ -2,6 +2,10 @@
 import { formProps } from '../../search/src/props'
 
 let props = {
+    refresh: {
+        type: Number,
+        default: 0
+    },
   // Element UI Table attributes
   height: [String, Number],
   maxHeight: [String, Number],

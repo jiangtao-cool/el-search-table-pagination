@@ -11,7 +11,7 @@ export const formProps = {
   },
   inline: {
     type: Boolean,
-    default: false
+    default: true
   },
   fuzzy: {
     type: Boolean,

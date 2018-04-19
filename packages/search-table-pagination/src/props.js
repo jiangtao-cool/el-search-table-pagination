@@ -33,7 +33,8 @@ let props = {
     type: Function
   },
   url: {
-    type: String
+    type: String,
+      default: 'list'
   },
   method: {
     type: String,
@@ -51,11 +52,11 @@ let props = {
   },
   listField: {
     type: String,
-    default: 'data.list'
+    default: 'content'
   },
   totalField: {
     type: String,
-    default: 'data.total'
+    default: 'totalElements'
   },
   params: {
     type: Object,
@@ -163,7 +164,7 @@ let props = {
   },
   pageIndexKey: {
     type: String,
-    default: 'pageIndex'
+    default: 'pageNumber'
   },
   pageSizeKey: {
     type: String,

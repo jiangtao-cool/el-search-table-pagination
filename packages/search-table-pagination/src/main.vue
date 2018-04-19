@@ -55,7 +55,7 @@
       @row-dblclick="(row, event) => emitEventHandler('row-dblclick', row, event)"
       @row-contextmenu="(row, event) => emitEventHandler('row-contextmenu', row, event)"
       @header-click="(column, event) => emitEventHandler('header-click', column, event)"
-      @sort-change="args => emitEventHandler('sort-change', args)"
+      @sort-change="handleSortChange"
       @filter-change="filters => emitEventHandler('filter-change', filters)"
       @current-change="(currentRow, oldCurrentRow) => emitEventHandler('current-change', currentRow, oldCurrentRow)"
       @header-dragend="(newWidth, oldWidth, column, event) => emitEventHandler('header-dragend', newWidth, oldWidth, column, event)"
@@ -136,6 +136,7 @@
       return {
         Vue,
         pagination: {
+            orderBy: null,
           pageIndex: 1,
           pageSize: (() => {
             const { pageSizes } = _this
@@ -157,6 +158,16 @@
       }
     },
     methods: {
+        handleSortChange({ prop, order }){
+            console.log(prop, order)
+            order = order == 'descending' ? 'desc' : 'asc'
+            if (prop) {
+                this.pagination.orderBy = prop + ',' + order
+            }else {
+                this.pagination.orderBy = null
+            }
+            this.dataChangeHandler()
+        },
       handleSizeChange(size) {
         this.pagination.pageSize = size
         this.dataChangeHandler()
@@ -231,6 +242,9 @@
               pagination } = this
 
         params = JSON.parse(JSON.stringify(Object.assign(params, formParams)))
+          if (pagination.orderBy) {
+              params.orderBy = pagination.orderBy
+          }
 
         if (showPagination) {
           params = Object.assign(params, {

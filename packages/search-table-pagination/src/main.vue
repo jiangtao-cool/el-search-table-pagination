@@ -96,7 +96,7 @@
             <slot :name="column.slotName" :row="scope.row" :$index="scope.$index" />
           </span>
           <span v-else>
-            {{ column.render ? column.render(scope.row) : scope.row[column.prop] }}
+            {{ column.render ? column.render(scope.row) : getDeepProp(scope.row,column.prop) }}
           </span>
         </template>
       </el-table-column>
@@ -162,11 +162,10 @@
             if (prop.indexOf('.') != -1){
                 let arr = prop.split('.')
                 if (arr.length == 2){
-                    return row[arr[0]][arr[1]]
+                    let v = row[arr[0]]
+                    return v == null ? '': v[arr[1]];
                 }
-                if (arr.length == 3){
-                    return row[arr[0]][arr[1]][arr[2]]
-                }
+
                 // 层级太深的暂不支持
             }
             return row[prop];

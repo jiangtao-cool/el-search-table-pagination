@@ -158,6 +158,19 @@
       }
     },
     methods: {
+        getDeepProp(row, prop){
+            if (prop.indexOf('.') != -1){
+                let arr = prop.split('.')
+                if (arr.length == 2){
+                    return row[arr[0]][arr[1]]
+                }
+                if (arr.length == 3){
+                    return row[arr[0]][arr[1]][arr[2]]
+                }
+                // 层级太深的暂不支持
+            }
+            return row[prop];
+        },
         handleSortChange({ prop, order }){
             console.log(prop, order)
             order = order == 'descending' ? 'desc' : 'asc'

@@ -2,7 +2,7 @@
 export const formProps = {
   size: {
     type: String,
-    default: 'mini',
+    default: 'small',
     validator: sizeValidator
   },
   showResetBtn: {

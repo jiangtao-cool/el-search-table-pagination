@@ -96,7 +96,7 @@
             <slot :name="column.slotName" :row="scope.row" :$index="scope.$index" />
           </span>
           <span v-else>
-            {{ column.render ? column.render(scope.row) : getDeepProp(scope.row,column.prop) }}
+            {{ column.render ? column.render(scope.row, getDeepProp(scope.row,column.prop)) : getDeepProp(scope.row,column.prop) }}
           </span>
         </template>
       </el-table-column>

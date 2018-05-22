@@ -87,7 +87,10 @@
         :filter-placement="column.filterPlacement"
         :filter-multiple="column.filterMultiple"
         :filter-method="column.filterMethod"
-        :filtered-value="column.filteredValue">
+        :filtered-value="column.filteredValue"
+        :type="column.type"
+      >
+
         <template slot-scope="scope" :scope="newSlotScope ? 'scope' : false ">
           <span v-if="column.filter">
             {{ Vue.filter(column['filter'])(scope.row[column.prop]) }}
@@ -159,6 +162,9 @@
     },
     methods: {
         getDeepProp(row, prop){
+            if (prop == null){
+                return null;
+            }
             if (prop.indexOf('.') != -1){
                 let arr = prop.split('.')
                 if (arr.length == 2){

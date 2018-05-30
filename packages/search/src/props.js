@@ -2,8 +2,7 @@
 export const formProps = {
   size: {
     type: String,
-    default: 'small',
-    validator: sizeValidator
+    default: 'small'
   },
   showResetBtn: {
     type: Boolean,
@@ -47,8 +46,7 @@ export const formProps = {
     // },
     // size: {
     //   type: String,
-    //   default: '',
-    //   validator: sizeValidator
+    //   default: ''
     // },
     // placeholder: {
     //   type: String,
@@ -90,20 +88,3 @@ export const formProps = {
   }
 }
 
-function sizeValidator(value) {
-  const methodTypes = ['large', 'small', 'mini'];
-  const valid = methodTypes.indexOf(value.toLowerCase()) !== -1 || value === ''
-  if (!valid) {
-    throw new Error(`Size must be one of ['large', 'small', 'mini']`)
-  }
-  return valid
-}
-
-// function itemTypeValidator(value) {
-//   const methodTypes = ['input', 'select', 'date', 'daterange'];
-//   const valid = methodTypes.indexOf(value.toLowerCase()) !== -1
-//   if (!valid) {
-//     throw new Error(`ItemType must be one of ['input', 'select', 'date', 'daterange']`)
-//   }
-//   return valid
-// }
